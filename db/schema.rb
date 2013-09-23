@@ -11,20 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117103619) do
+ActiveRecord::Schema.define(:version => 20120116104725) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :limit => 100, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.index ["name"], :name => "index_categories_on_name", :unique => true
   end
 
   create_table "countries", :force => true do |t|
     t.string   "code",       :limit => 10,  :null => false
     t.string   "name",       :limit => 100, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.index ["code"], :name => "index_countries_on_code", :unique => true
     t.index ["name"], :name => "index_countries_on_name", :unique => true
   end
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(:version => 20120117103619) do
     t.string   "contact_title",      :limit => 50
     t.string   "contact_first_name", :limit => 50
     t.string   "contact_last_name",  :limit => 50
-    t.integer  "category_id"
+    t.integer  "category_id",                       :null => false
     t.text     "address"
     t.string   "city",               :limit => 50
     t.string   "region",             :limit => 50
     t.integer  "postal_code"
-    t.integer  "country_id"
+    t.integer  "country_id",                        :null => false
     t.string   "phone",              :limit => 50
     t.string   "fax",                :limit => 50
     t.string   "mobile",             :limit => 50
@@ -47,18 +47,13 @@ ActiveRecord::Schema.define(:version => 20120117103619) do
     t.string   "homepage",           :limit => 50
     t.string   "skype",              :limit => 50
     t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.index ["company_name"], :name => "index_customers_on_company_name", :unique => true
-  end
-
-  create_table "customers_notes", :force => true do |t|
-    t.integer  "customer_id", :null => false
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["customer_id"], :name => "index_customers_notes_on_customer_id"
-    t.foreign_key ["customer_id"], "customers", ["id"], :on_update => :cascade, :on_delete => :restrict, :name => "customers_notes_ibfk_1"
+    t.index ["category_id"], :name => "fk__customers_category_id"
+    t.index ["country_id"], :name => "fk__customers_country_id"
+    t.foreign_key ["category_id"], "categories", ["id"], :on_update => :cascade, :on_delete => :restrict, :name => "fk_customers_category_id"
+    t.foreign_key ["country_id"], "countries", ["id"], :on_update => :cascade, :on_delete => :restrict, :name => "fk_customers_country_id"
   end
 
 end

@@ -2,13 +2,14 @@
 #   gem install mysql
 #
 development:
-  adapter: mysql
-  database: customer
-  host: localhost  
-  username: root
-  password: sa
-  port: 3306
+  adapter: mysql2
   encoding: utf8
+  reconnect: false
+  database: customer_development
+  pool: 5
+  username: root
+  password: qmzp1029
+  socket: /var/run/mysqld/mysqld.sock
 
 
 # Warning: The database defined as "test" will be erased and
