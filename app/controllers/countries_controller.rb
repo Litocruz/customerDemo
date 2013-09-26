@@ -43,6 +43,9 @@ class CountriesController < ApplicationController
         format.html { redirect_to countries_url, flash[:info]="Country was successfully created." }
         format.js { flash[:info]="Country was successfully created." }
         format.json { render json: @country, status: :created, location: @country }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @country.errors, status: :unprocessable_entity }
       end
     end
   end

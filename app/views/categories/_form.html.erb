@@ -1,5 +1,7 @@
+ 
 <%= form_for(@category, :remote => true, :html => { :class => "form-horizontal"} ) do |f| %>
-    <% if @category.errors.any? %>
+
+ <% if @category.errors.any? %>
         <div class="alert alert-block alert-error">
             <h2>Oops !</h2>
             <ul>
@@ -10,8 +12,9 @@
                 <% end %>
             </ul>
         </div>
+    <% else %>
+        <div class="alert"><%= @category.errors.full_messages %></div>
     <% end %>
-
     <div class="control-group <%= 'error' if @category.errors[:name].present? %>">
         <label for="name" class="control-label">Name</label>
         <div class="controls">

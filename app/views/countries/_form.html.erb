@@ -1,6 +1,6 @@
 <%= form_for(@country, :remote => true, :html => { :class => "form-horizontal"}) do |f| %>
 <% if @country.errors.any? %>
-<div class="alert alert-block alert-error">
+<div >
     <h2>Oops !</h2>
     <ul>
         <% @country.errors.full_messages.each do |msg| %>

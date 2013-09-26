@@ -43,6 +43,10 @@ class CustomersController < ApplicationController
         format.html { redirect_to customers_url, flash[:info]="Customer was successfully created." }
         format.js { flash[:info]="Customer was successfully created." }
         format.json { render json: @customer, status: :created, location: @customer }
+      else
+        format.html { render action: "create" }
+        format.js { flash[:error] = "hasta el pecho" }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
   end

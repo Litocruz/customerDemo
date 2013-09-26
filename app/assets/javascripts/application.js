@@ -10,7 +10,7 @@
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
-    $('#confirm-modal #delete').live("click", function(){
+    $('#confirm-modal #delete').on("click", function(){
         $.ajax({
             async: false,
             type: "DELETE",
@@ -24,13 +24,13 @@ function show_confirm_modal(path, question){
 }
 
 $(function(){
-    $("a[data-remote='true']").live("click", function(){
+    $("a[data-remote='true']").on("click", function(){
         history.pushState({
             path:this.href
             }, "", this.href);
     });
     
-    $("#table_div .pagination a, #table_div th a").live("click", function(){
+    $("#table_div .pagination a, #table_div th a").on("click", function(){
         $.getScript(this.href);
         history.pushState({
             path:this.href
@@ -38,7 +38,7 @@ $(function(){
         return false;
     });
     
-    $("#quicksearch input").live("keyup",function(){
+    $("#quicksearch input").on("keyup",function(){
         var form = $("#ajax_search_form");
         var url = form.attr('action') + '?' + form.serialize();
         url = url.replace("ajax_search=true", "ajax_search=");
